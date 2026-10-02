@@ -1,0 +1,710 @@
+<title>Phố Mình Walkthrough</title>
+<style>
+/* Layout: resident phone | Phố Mình core | staff phone, with one story caption and controls beneath. Light only (Ty's standard), Apple system palette, status colours: blue running, green done, red urgent, pink = thanks only. */
+:root{
+  color-scheme: light;
+  --page:#F2F2F7; --card:#FFFFFF; --line:#E5E5EA; --screen:#F7F7FA;
+  --ink1:#1C1C1E; --ink2:#3C3C43; --ink3:#8E8E93;
+  --blue:#007AFF; --blue-ink:#0040DD; --blue-tint:#E8F1FF;
+  --green:#34C759; --green-ink:#248A3D; --green-tint:#E9F8EE;
+  --amber:#FF9500; --amber-ink:#C93400; --amber-tint:#FFF3E3;
+  --red:#FF3B30; --red-ink:#D70015; --red-tint:#FFECEB;
+  --pink:#FF2D55; --pink-ink:#D30F45; --pink-tint:#FFEAF0;
+  --yellow:#FFCC00;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --r:12px;
+}
+html,body{background:var(--page);color:var(--ink2)}
+body{font-family:var(--font);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:20px 32px;display:flex;flex-direction:column;gap:16px}
+
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.top>div:first-child{min-width:0;flex:1 1 320px}
+.eyebrow{margin:0 0 4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);font-weight:600}
+.h-how{margin:0;font-size:clamp(24px,4vw,32px);line-height:1.15;color:var(--ink1);font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.lede{margin:6px 0 0;font-size:15px;line-height:1.45;max-width:62ch}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--card);padding:3px}
+.lang button{border:0;background:transparent;font:600 13px var(--font);color:var(--ink3);padding:6px 14px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink1);color:#fff}
+
+.stage{position:relative;display:grid;grid-template-columns:1fr minmax(220px,1.05fr) 1fr;grid-template-areas:"res hub staff";gap:20px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 16px}
+.col{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}
+.col-res{grid-area:res}.col-hub{grid-area:hub;align-items:stretch}.col-staff{grid-area:staff}
+.col-label{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);text-align:center}
+
+.phone{width:min(100%,250px);aspect-ratio:250/520;border:1px solid #D1D1D6;border-radius:34px;padding:8px;background:var(--card);position:relative}
+.notch{position:absolute;top:13px;left:50%;transform:translateX(-50%);width:64px;height:6px;border-radius:6px;background:#D1D1D6;z-index:2}
+.screen{height:100%;border-radius:26px;background:var(--screen);overflow:hidden;container-type:inline-size;position:relative}
+.scr{font-size:5cqw;line-height:1.35;color:var(--ink2);height:100%;display:flex;flex-direction:column}
+.scr.swap{animation:swap .45s ease}
+@keyframes swap{from{opacity:.15;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* phone UI */
+.bar{display:flex;flex-direction:column;gap:.1em;padding:2.4em 1em .7em;background:var(--card);border-bottom:1px solid var(--line)}
+.bar .app{font-weight:700;color:var(--ink1);font-size:1.05em}
+.bar .sub{font-size:.8em;color:var(--ink3)}
+.body{padding:.8em;display:flex;flex-direction:column;gap:.6em;flex:1;min-height:0}
+.hello{margin:0;font-size:1.25em;font-weight:700;color:var(--ink1)}
+.meta{margin:0;font-size:.78em;color:var(--ink3)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:.9em;padding:.65em .75em;display:flex;flex-direction:column;gap:.35em}
+.card b{color:var(--ink1)}
+.card p{margin:0}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.45em}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:.8em;padding:.55em .3em;display:flex;flex-direction:column;align-items:center;gap:.3em;font-size:.78em;text-align:center;color:var(--ink1)}
+.tile i{width:1.9em;height:1.9em;border-radius:.6em;display:grid;place-items:center;font-style:normal;font-weight:700;color:#fff;font-size:.95em}
+.tile.hl{border-color:var(--blue);background:var(--blue-tint)}
+.dot{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--ink3);flex:none}
+.dot.blue{background:var(--blue)}.dot.green{background:var(--green)}.dot.amber{background:var(--amber)}.dot.red{background:var(--red)}.dot.pink{background:var(--pink)}
+.chip{display:inline-flex;align-items:center;gap:.4em;align-self:flex-start;font-size:.8em;font-weight:600;border-radius:999px;padding:.3em .7em}
+.chip.blue{background:var(--blue-tint);color:var(--blue-ink)}
+.chip.green{background:var(--green-tint);color:var(--green-ink)}
+.chip.red{background:var(--red-tint);color:var(--red-ink)}
+.chip.pink{background:var(--pink-tint);color:var(--pink-ink)}
+.chip.amber{background:var(--amber-tint);color:var(--amber-ink)}
+.sys{margin:0;align-self:center;font-size:.72em;color:var(--ink3);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.25em .7em}
+.bubble{max-width:88%;border-radius:1em;padding:.55em .7em;font-size:.88em;display:flex;flex-direction:column;gap:.4em}
+.bubble.me{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:.3em}
+.bubble.ai{align-self:flex-start;background:var(--card);border:1px solid var(--line);color:var(--ink1);border-bottom-left-radius:.3em}
+.who{font-size:.72em;color:var(--ink3);margin:0 0 -.35em}
+.photo{border-radius:.6em;aspect-ratio:4/3;position:relative;overflow:hidden;border:1px solid var(--line)}
+.photo.before{background:radial-gradient(ellipse 55% 22% at 50% 82%,#7FB2E5 0 60%,transparent 62%),radial-gradient(circle at 70% 18%,#A7C9EC 0 6%,transparent 7%),linear-gradient(#DCDCE2 0 58%,#C9C4BC 58%)}
+.photo.after{background:radial-gradient(ellipse 30% 6% at 50% 84%,#D7D2CA 0 60%,transparent 62%),linear-gradient(#E6E6EB 0 58%,#D6D1C9 58%)}
+.photo.sm{width:5.5em}
+.photo span{position:absolute;left:.4em;top:.4em;font-size:.7em;font-weight:600;background:rgba(255,255,255,.9);color:var(--ink1);border-radius:.4em;padding:.1em .4em}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:.45em}
+.btn{align-self:stretch;text-align:center;border-radius:.8em;padding:.6em;font-weight:600;font-size:.9em;color:#fff;background:var(--blue)}
+.btn.pink{background:var(--pink)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.45em;font-size:.85em}
+.steps li{display:flex;align-items:center;gap:.5em;color:var(--ink3)}
+.steps li.done{color:var(--ink1)}
+.steps li.done .dot{background:var(--green)}
+.steps li.active{color:var(--blue-ink);font-weight:600}
+.steps li.active .dot{background:var(--blue)}
+.steps li .t{margin-left:auto;font-size:.85em;color:var(--ink3);font-weight:400;font-variant-numeric:tabular-nums}
+.clock{display:flex;align-items:baseline;gap:.4em}
+.clock .big{font-size:1.9em;font-weight:700;color:var(--ink1);font-variant-numeric:tabular-nums}
+.meter{height:.45em;border-radius:1em;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--blue);border-radius:1em}
+.avatar{width:2.1em;height:2.1em;border-radius:50%;display:grid;place-items:center;background:var(--ink1);color:#fff;font-weight:700;flex:none}
+.row{display:flex;align-items:center;gap:.55em}
+.stars{color:var(--yellow);letter-spacing:.1em;font-size:1.1em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.4em}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:.8em;padding:.45em;text-align:center}
+.stat b{display:block;font-size:1.3em;color:var(--ink1);font-variant-numeric:tabular-nums}
+.stat span{font-size:.7em;color:var(--ink3)}
+.list{display:flex;flex-direction:column;gap:.35em;font-size:.8em}
+.list div{display:flex;align-items:center;gap:.45em;justify-content:space-between}
+.list .tag{display:inline-flex;align-items:center;gap:.35em;font-size:.9em;white-space:nowrap}
+.bars{display:flex;flex-direction:column;gap:.3em;font-size:.75em}
+.bars div{display:grid;grid-template-columns:4.6em 1fr 2.2em;align-items:center;gap:.4em}
+.bars i{height:.5em;border-radius:1em;background:var(--blue)}
+.bars em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.4em;font-size:.85em}
+.check li{display:flex;gap:.5em;align-items:center}
+.check li::before{content:"";width:1em;height:1em;border-radius:50%;border:1.5px solid var(--ink3);flex:none}
+.check li.ok::before{border-color:var(--green);background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/100% no-repeat}
+.big-n{font-size:2em;font-weight:700;color:var(--ink1);font-variant-numeric:tabular-nums;line-height:1}
+.plus{color:var(--pink-ink);font-weight:700;font-size:.9em}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{border-color:var(--line)}50%{border-color:var(--red)}}
+.award{align-items:center;text-align:center;background:linear-gradient(var(--card),var(--card)) padding-box;border-color:var(--yellow)}
+.medal{width:3em;height:3em;border-radius:50%;background:var(--yellow);display:grid;place-items:center;color:var(--ink1);font-weight:800;font-size:1.1em}
+.toast{background:var(--pink-tint);color:var(--pink-ink);border-radius:.9em;padding:.6em .7em;font-size:.85em}
+.toast b{color:var(--pink-ink)}
+
+/* hub */
+.hub{display:flex;flex-direction:column;gap:10px}
+.node{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:10px 12px;display:flex;flex-direction:column;gap:3px;transition:background .3s,border-color .3s}
+.node .h{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.node .name{font-weight:600;font-size:14px;color:var(--ink1)}
+.node .desc{font-size:12.5px;line-height:1.35;color:var(--ink3)}
+.node .state{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.node .state[hidden]{display:none}
+.node.active{border-color:var(--blue);background:var(--blue-tint)}
+.node.active .state{color:var(--blue-ink)}
+.node.done .state{color:var(--green-ink)}
+.node .extra{font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums;margin-top:2px}
+.node .report{margin-top:4px;font-size:12.5px;color:var(--ink1);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+
+.packets{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.pk{position:absolute;left:0;top:0;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--font);color:#fff;background:var(--blue);border:2px solid #fff}
+.pk.heart{background:var(--pink)}.pk.alert{background:var(--red)}.pk.ok{background:var(--green)}.pk.star{background:var(--yellow);color:var(--ink1)}
+
+/* story + controls */
+.story{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 24px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+.caption{min-width:0}
+.stepno{margin:0 0 2px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-ink)}
+.caption h2{margin:0 0 4px;font-size:19px;color:var(--ink1);text-wrap:balance}
+.caption p.body-t{margin:0;font-size:15px;line-height:1.5;max-width:68ch;min-height:3em}
+.controls{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.btns{display:flex;gap:8px}
+.cbtn{border:1px solid var(--line);background:var(--card);color:var(--ink1);font:600 14px var(--font);border-radius:999px;padding:8px 14px;cursor:pointer;min-width:44px}
+.cbtn.primary{background:var(--blue);border-color:var(--blue);color:#fff;min-width:110px}
+.cbtn:focus-visible,.dots button:focus-visible,.lang button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.dots button{width:10px;height:10px;border-radius:50%;border:0;background:#D1D1D6;padding:0;cursor:pointer}
+.dots button[aria-current="step"]{background:var(--blue);width:22px;border-radius:6px}
+.progress{width:100%;height:3px;background:var(--line);border-radius:3px;overflow:hidden;grid-column:1/-1}
+.progress i{display:block;height:100%;width:0;background:var(--blue)}
+.foot{margin:0;font-size:12.5px;color:var(--ink3)}
+.print-list{display:none}
+
+.sites{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.site{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:6px}
+.site-name{margin:0;font-size:14px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
+.site-num{margin:0;font-size:clamp(40px,6vw,60px);font-weight:800;color:var(--ink1);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.site-lbl{margin:0;font-size:15px;color:var(--ink2)}
+.site-facts{list-style:none;margin:6px 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.site-facts li{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding-top:4px}
+.site-facts b{color:var(--ink1);font-variant-numeric:tabular-nums;white-space:nowrap}
+.site .chip{font-size:13px}
+/* ---------- intro pitch ---------- */
+.intro>.lang{position:absolute;top:12px;right:12px;z-index:3}
+.intro{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.scenes{display:grid;min-height:clamp(440px,52vw,560px)}
+.scene{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s;display:flex;align-items:center;justify-content:center;padding:32px 24px}
+.scene.on{opacity:1;visibility:visible}
+.sc{width:100%;max-width:820px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.sc.center{align-items:center;text-align:center}
+.kicker{margin:0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-ink)}
+.headline{margin:0;font-size:clamp(24px,3.6vw,38px);line-height:1.15;color:var(--ink1);font-weight:700;letter-spacing:-.015em;text-wrap:balance}
+.cover-title{margin:0;font-size:clamp(48px,9vw,88px);line-height:1;color:var(--ink1);font-weight:800;letter-spacing:-.03em}
+.tagline{margin:0;font-size:clamp(17px,2.2vw,22px);color:var(--ink2);max-width:34ch;text-wrap:balance}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.cta{border:0;border-radius:999px;padding:13px 22px;font:600 16px var(--font);cursor:pointer;background:var(--blue);color:#fff}
+.cta.ghost{background:transparent;color:var(--blue-ink);border:1px solid var(--line)}
+.cta:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.small{margin:0;font-size:12.5px;color:var(--ink3)}
+.a{opacity:1}
+.scene.on .a{animation:rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.q{margin:0;background:var(--screen);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:8px}
+.q blockquote{margin:0;font-size:16px;line-height:1.4;color:var(--ink1)}
+.q figcaption{font-size:12px;color:var(--ink3)}
+.stat-line{margin:0;font-size:16px;color:var(--ink2)}
+.stat-line b{font-size:28px;color:var(--ink1);font-variant-numeric:tabular-nums;margin-right:6px}
+.roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.role{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.ghost-av{width:56px;height:56px;border-radius:50%;background:#E5E5EA;display:grid;place-items:center;font-size:22px;font-weight:700;color:var(--ink3)}
+.role b{color:var(--ink1);font-size:16px}
+.role span{font-size:13px;color:var(--ink3)}
+.link{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px}
+.end{width:clamp(88px,14vw,120px);aspect-ratio:1;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;text-align:center;font-weight:600;color:var(--ink1);background:var(--screen);font-size:15px;padding:6px}
+.gap{position:relative;height:56px;display:flex;align-items:center}
+.gap::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px dashed #C7C7CC}
+.gap .fill{position:absolute;left:0;right:0;top:50%;height:3px;margin-top:-1px;background:var(--blue);transform:scaleX(0);transform-origin:left}
+.scene.on .gap .fill{animation:grow 1.2s ease forwards;animation-delay:4.2s}
+@keyframes grow{to{transform:scaleX(1)}}
+.piece{position:relative;margin:0 auto;background:var(--blue);color:#fff;font-weight:700;border-radius:999px;padding:10px 18px;font-size:16px;white-space:nowrap}
+.scene.on .piece{animation:drop .9s cubic-bezier(.2,.8,.2,1.2) both;animation-delay:3.4s}
+@keyframes drop{from{opacity:0;transform:translateY(-36px) scale(.8)}to{opacity:1;transform:none}}
+.trio{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px}
+.tcard{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:6px;text-align:center;align-items:center}
+.tcard b{color:var(--ink1);font-size:17px}
+.tcard span{font-size:13.5px;color:var(--ink3);line-height:1.35}
+.tcard.core{border-color:var(--blue);background:var(--blue-tint)}
+.tcard.core b{color:var(--blue-ink)}
+.arrow{font-size:22px;color:var(--blue)}
+.mini-phone{width:34px;height:58px;border:2px solid var(--ink1);border-radius:9px;position:relative}
+.mini-phone::after{content:"";position:absolute;left:50%;top:5px;transform:translateX(-50%);width:10px;height:3px;border-radius:2px;background:var(--ink1)}
+.ai-orb{width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#5AA8FF,var(--blue));display:grid;place-items:center;color:#fff;font-weight:800}
+.compare{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:12px}
+.cmp{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px}
+.cmp h4{margin:0;font-size:14px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.cmp.us{border-color:var(--blue)}
+.cmp.us h4{color:var(--blue-ink)}
+.cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.cmp li{display:flex;align-items:center;gap:8px;font-size:16px;color:var(--ink1)}
+.cmp.them li{color:var(--ink3)}
+.bigstat{margin:0;font-size:clamp(56px,10vw,96px);font-weight:800;color:var(--ink1);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.subtitle{border-top:1px solid var(--line);padding:12px 20px 0;min-height:4.6em;font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.ibar{display:flex;align-items:center;gap:10px;padding:10px 20px 14px;flex-wrap:wrap}
+.ibar .grow{flex:1}
+.iprog{height:3px;background:var(--line)}
+.iprog i{display:block;height:100%;width:0;background:var(--blue)}
+.idots{display:flex;gap:6px}
+.idots button{width:9px;height:9px;border-radius:50%;border:0;background:#D1D1D6;padding:0;cursor:pointer}
+.idots button[aria-current="step"]{background:var(--blue);width:20px;border-radius:5px}
+.intro:not(.running) .subtitle,.intro:not(.running) .ibar,.intro:not(.running) .iprog{display:none}
+@media (max-width:760px){
+  .quotes,.roles,.sites{grid-template-columns:1fr}
+  .q:nth-child(3){display:none}
+  .trio{grid-template-columns:1fr;justify-items:stretch}
+  .arrow{transform:rotate(90deg);justify-self:center}
+  .compare{grid-template-columns:1fr}
+  .scene{padding:24px 16px}
+}
+@media (prefers-reduced-motion:reduce){
+  .scene.on .a,.scene.on .piece,.scene.on .gap .fill{animation:none}
+  .gap .fill{transform:none}
+  .scene{transition:none}
+}
+
+@media (max-width:760px){
+  .stage{grid-template-columns:1fr 1fr;grid-template-areas:"res staff" "hub hub";gap:14px;padding:16px 10px}
+  .hub{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .node:last-child{grid-column:1/-1}
+  .story{grid-template-columns:1fr}
+  .controls{align-items:stretch}
+  .btns{justify-content:space-between}
+  .dots{justify-content:center}
+}
+@media (max-width:420px){
+  .node .desc{display:none}
+  .phone{border-radius:24px;padding:5px}.screen{border-radius:20px}.notch{top:9px;width:44px}
+}
+@media (prefers-reduced-motion:reduce){
+  .scr.swap,.pulse{animation:none}
+}
+@media print{
+  html,body{background:#fff}
+  .lang,.controls,.packets,.progress{display:none!important}
+  .stage,.story,.card,.node{break-inside:avoid}
+  .lede,.caption p.body-t,.node .desc,.foot,.meta{color:#222}
+  .ibar,.iprog,.subtitle,.cta-row{display:none!important}
+  .print-list{display:block;margin:0;padding-left:20px;color:#222;font-size:12px;line-height:1.5}
+  .print-list li{break-inside:avoid;margin-bottom:6px}
+}
+</style>
+
+<div class="wrap">
+  <section class="intro" id="intro" aria-label="Phố Mình">
+    <div class="lang" role="group" aria-label="Language">
+      <button id="lang-vi" type="button" aria-pressed="true">VI</button>
+      <button id="lang-en" type="button" aria-pressed="false">EN</button>
+    </div>
+    <div class="scenes">
+      <div class="scene on" data-s="0"><div class="sc center">
+        <p class="kicker" data-vi="Omni Service · đề xuất sản phẩm" data-en="Omni Service · product proposal"></p>
+        <h1 class="cover-title">Phố Mình</h1>
+        <p class="tagline" data-vi="Mảnh ghép còn thiếu giữa cư dân và nhân viên." data-en="The missing link between residents and staff."></p>
+        <div class="cta-row">
+          <button class="cta" id="intro-start" type="button" data-vi="▶ Xem giới thiệu · 1 phút 40" data-en="▶ Watch the intro · 1 min 40"></button>
+          <button class="cta ghost" id="intro-skip0" type="button" data-vi="Bỏ qua, xem cách hoạt động" data-en="Skip to how it works"></button>
+        </div>
+        <p class="small" data-vi="Eco Central Park · Vinh  ·  Eco Retreat · Long An" data-en="Eco Central Park · Vinh  ·  Eco Retreat · Long An"></p>
+        <p class="small" data-vi="Có âm thanh: nhạc nền và giọng đọc." data-en="Sound on: music and narration."></p>
+      </div></div>
+
+      <div class="scene" data-s="1"><div class="sc">
+        <p class="kicker a" data-vi="Phía cư dân" data-en="The residents' side"></p>
+        <h2 class="headline a" style="--d:.2s" data-vi="Cư dân trả phí, nhưng không thấy việc được làm." data-en="Residents pay, but can't see the work."></h2>
+        <div class="quotes">
+          <figure class="q a" style="--d:1.2s"><blockquote>“Ko có OTP gửi về, ko đăng ký được tài khoản”</blockquote><figcaption data-vi="Đánh giá App Store, ứng dụng Eco Central Park" data-en="App Store review, Eco Central Park app"></figcaption></figure>
+          <figure class="q a" style="--d:2.2s"><blockquote>“Tòa S1 S2 bàn giao chậm đến khi nào vậy mọi người?”</blockquote><figcaption data-vi="Nhóm Facebook cư dân ECP, 09/2026" data-en="ECP residents' Facebook group, Sep 2026"></figcaption></figure>
+          <figure class="q a" style="--d:3.2s"><blockquote>“mấy năm sau sẽ xuống cấp… hoặc phí rất cao”</blockquote><figcaption data-vi="Bình luận YouTube về Eco Retreat" data-en="YouTube comment on Eco Retreat"></figcaption></figure>
+        </div>
+        <p class="stat-line a" style="--d:7s"><b data-vi="54.100" data-en="54,100"></b><span data-vi="thành viên trong nhóm “cư dân” lớn nhất của ECP, do môi giới quản lý" data-en="members in ECP's largest “residents” group, run by brokers"></span></p>
+      </div></div>
+
+      <div class="scene" data-s="2"><div class="sc">
+        <p class="kicker a" data-vi="Phía nhân viên" data-en="The staff side"></p>
+        <h2 class="headline a" style="--d:.2s" data-vi="Nhân viên làm việc, nhưng không ai thấy họ." data-en="Staff do the work, but nobody sees them."></h2>
+        <div class="roles">
+          <div class="role a" style="--d:1.4s"><div class="ghost-av">?</div><b data-vi="Bảo vệ" data-en="Guard"></b><span data-vi="Tên: ít ai biết" data-en="Name: few know it"></span></div>
+          <div class="role a" style="--d:1.9s"><div class="ghost-av">?</div><b data-vi="Vệ sinh" data-en="Cleaner"></b><span data-vi="Tên: ít ai biết" data-en="Name: few know it"></span></div>
+          <div class="role a" style="--d:2.4s"><div class="ghost-av">?</div><b data-vi="Kỹ thuật" data-en="Technician"></b><span data-vi="Tên: ít ai biết" data-en="Name: few know it"></span></div>
+        </div>
+        <p class="stat-line a" style="--d:5s"><b>477</b><span data-vi="nhân sự vận hành tại các khu Omni quản lý (07/2026)" data-en="operations staff across the sites Omni runs (Jul 2026)"></span></p>
+      </div></div>
+
+      <div class="scene" data-s="3"><div class="sc">
+        <p class="kicker a" data-vi="Mảnh ghép còn thiếu" data-en="The missing link"></p>
+        <h2 class="headline a" style="--d:.2s" data-vi="Giữa hai phía còn thiếu một mảnh ghép." data-en="Between the two, one piece is missing."></h2>
+        <div class="link a" style="--d:1s">
+          <div class="end" data-vi="Cư dân" data-en="Residents"></div>
+          <div class="gap"><span class="fill"></span><span class="piece">Phố Mình</span></div>
+          <div class="end" data-vi="Nhân viên" data-en="Staff"></div>
+        </div>
+        <p class="stat-line a" style="--d:5.5s" data-vi="Yêu cầu được nhìn thấy. Việc làm được ghi nhận. Niềm tin được xây lại." data-en="Requests are seen. Work is recognised. Trust is rebuilt."></p>
+      </div></div>
+
+      <div class="scene" data-s="4"><div class="sc">
+        <p class="kicker a" data-vi="Ý tưởng" data-en="The idea"></p>
+        <h2 class="headline a" style="--d:.2s" data-vi="Phố Mình: một ứng dụng, hai phía." data-en="Phố Mình: one app, two sides."></h2>
+        <div class="trio">
+          <div class="tcard a" style="--d:3.6s"><div class="mini-phone"></div><b data-vi="Cư dân" data-en="Residents"></b><span data-vi="Mở ngay trong Zalo, không cần tải" data-en="Open it inside Zalo, nothing to download"></span></div>
+          <span class="arrow a" style="--d:9s">⇄</span>
+          <div class="tcard core a" style="--d:9s"><div class="ai-orb">AI</div><b data-vi="Trợ lý AI" data-en="AI assistant"></b><span data-vi="Tiếp nhận, phân loại, giao việc · 24/7" data-en="Takes, sorts and assigns requests · 24/7"></span></div>
+          <span class="arrow a" style="--d:9s">⇄</span>
+          <div class="tcard a" style="--d:6.4s"><div class="mini-phone"></div><b data-vi="Nhân viên" data-en="Staff"></b><span data-vi="Ứng dụng riêng: việc, đồng hồ, lời cảm ơn" data-en="Their own app: jobs, clock, thanks"></span></div>
+        </div>
+      </div></div>
+
+      <div class="scene" data-s="5"><div class="sc">
+        <p class="kicker a" data-vi="Khác biệt" data-en="What's different"></p>
+        <h2 class="headline a" style="--d:.2s" data-vi="Phố Mình khép kín vòng phục vụ." data-en="Phố Mình closes the service loop."></h2>
+        <div class="compare">
+          <div class="cmp them a" style="--d:1s"><h4 data-vi="Ứng dụng cư dân hiện nay" data-en="Resident apps today"></h4><ul><li><span class="dot"></span><span data-vi="Thông báo" data-en="Notices"></span></li><li><span class="dot"></span><span data-vi="Hóa đơn" data-en="Bills"></span></li></ul></div>
+          <div class="cmp us a" style="--d:4.5s"><h4>Phố Mình</h4><ul>
+            <li><span class="dot green"></span><span data-vi="Đồng hồ cam kết cho mỗi yêu cầu" data-en="A clock on every request"></span></li>
+            <li><span class="dot green"></span><span data-vi="Ảnh trước và sau khi sửa" data-en="Before-and-after photos"></span></li>
+            <li><span class="dot green"></span><span data-vi="Cảm ơn đúng người" data-en="Thanks to the right person"></span></li>
+            <li><span class="dot green"></span><span data-vi="Bảng Nhịp Phố công khai, phí đi đâu" data-en="Public Nhịp Phố board, where fees go"></span></li>
+            <li><span class="dot green"></span><span data-vi="Trợ lý AI 24/7" data-en="AI assistant, 24/7"></span></li>
+          </ul></div>
+        </div>
+        <p class="small a" style="--d:2s" data-vi="Ứng dụng cư dân hiện có của Ecopark tại Vinh: 0 lượt đánh giá, không cập nhật từ 01/2024 (App Store, 02/10/2026)." data-en="Ecopark's existing resident app for Vinh: 0 ratings, no update since Jan 2024 (App Store, 2 Oct 2026)."></p>
+      </div></div>
+
+      <div class="scene" data-s="6"><div class="sc">
+        <p class="kicker a" data-vi="Vì sao là bây giờ" data-en="Why now"></p>
+        <h2 class="headline a" style="--d:.2s" data-vi="Thời điểm là bây giờ, ở cả hai khu." data-en="The moment is now, at both townships."></h2>
+        <div class="sites">
+          <div class="site a" style="--d:2.4s">
+            <p class="site-name">Eco Central Park · Vinh</p>
+            <p class="site-num">613</p>
+            <p class="site-lbl" data-vi="hộ đã về ở" data-en="households already living there"></p>
+            <ul class="site-facts">
+              <li><span data-vi="Thấp tầng đã bàn giao" data-en="Low-rise homes handed over"></span><b data-vi="1.192 / 1.657" data-en="1,192 / 1,657"></b></li>
+              <li><span data-vi="Cao tầng Central Park Residences" data-en="High-rise Central Park Residences"></span><b>618 / 620</b></li>
+            </ul>
+            <span class="chip blue"><span class="dot blue"></span><span data-vi="Cần kênh chính thức ngay hôm nay" data-en="Needs an official channel today"></span></span>
+          </div>
+          <div class="site a" style="--d:11.5s">
+            <p class="site-name">Eco Retreat · Long An</p>
+            <p class="site-num" data-vi="Đợt đầu" data-en="First wave"></p>
+            <p class="site-lbl" data-vi="cư dân đang nhận nhà" data-en="of residents moving in"></p>
+            <ul class="site-facts">
+              <li><span data-vi="Eco Bazaar đã bàn giao" data-en="Eco Bazaar handed over"></span><b>54 / 66</b></li>
+              <li><span data-vi="Phân khu 1 đã bàn giao" data-en="Phase 1 handed over"></span><b>5 / 198</b></li>
+            </ul>
+            <span class="chip green"><span class="dot green"></span><span data-vi="Xây thói quen từ ngày đầu" data-en="Habits form on day one"></span></span>
+          </div>
+        </div>
+        <p class="small a" style="--d:3s" data-vi="Nguồn: báo cáo vận hành tuần ECP (25/09/2026) và ELA tuần 39/2026." data-en="Source: weekly operations reports, ECP (25 Sep 2026) and ELA week 39, 2026."></p>
+        <div class="cta-row a" style="--d:21s"><button class="cta" id="intro-walk" type="button" data-vi="Xem một yêu cầu đi qua Phố Mình ↓" data-en="Follow one request through Phố Mình ↓"></button></div>
+      </div></div>
+    </div>
+    <div class="iprog"><i id="iprog"></i></div>
+    <p class="subtitle" id="isub" aria-live="polite"></p>
+    <div class="ibar">
+      <button class="cbtn primary" id="ipause" type="button"></button>
+      <button class="cbtn" id="imusic" type="button"></button>
+      <span class="idots" id="idots"></span>
+      <span class="grow"></span>
+      <button class="cbtn" id="iskip" type="button"></button>
+    </div>
+    <p class="small" style="padding:0 20px 14px" data-vi="Số liệu từ rà soát công khai 25/09/2026 và App Store 02/10/2026. Giọng đọc do AI tạo (Microsoft). Nhạc nền tự soạn." data-en="Figures from a public review on 25/09/2026 and the App Store on 02/10/2026. AI-generated voice (Microsoft). Original background music."></p>
+  </section>
+
+  <header class="top" id="how">
+    <div>
+      <p class="eyebrow" data-k="eyebrow"></p>
+      <h2 class="h-how" data-k="title"></h2>
+      <p class="lede" data-k="lede"></p>
+    </div>
+  </header>
+
+  <section class="stage" id="stage" aria-live="off">
+    <div class="col col-res">
+      <p class="col-label" data-k="residents"></p>
+      <div class="phone" id="res"><div class="notch"></div><div class="screen" id="res-screen"></div></div>
+    </div>
+    <div class="col col-hub">
+      <p class="col-label" data-k="core"></p>
+      <div class="hub" id="hub"></div>
+    </div>
+    <div class="col col-staff">
+      <p class="col-label" data-k="staffl"></p>
+      <div class="phone" id="staff"><div class="notch"></div><div class="screen" id="staff-screen"></div></div>
+    </div>
+    <div class="packets" id="packets"></div>
+  </section>
+
+  <section class="story" aria-live="polite">
+    <div class="caption">
+      <p class="stepno" id="stepno"></p>
+      <h2 id="cap-title"></h2>
+      <p class="body-t" id="cap-body"></p>
+    </div>
+    <div class="controls">
+      <div class="btns">
+        <button class="cbtn" id="back" type="button"></button>
+        <button class="cbtn primary" id="play" type="button"></button>
+        <button class="cbtn" id="next" type="button"></button>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+    <div class="progress"><i id="prog"></i></div>
+  </section>
+
+  <p class="foot" data-k="foot"></p>
+  <ol class="print-list" id="printlist"></ol>
+</div>
+
+<script>
+(function(){
+/*__DATA__*/
+var T={
+ vi:{eyebrow:"Omni Service · ý tưởng sản phẩm",title:"Phố Mình hoạt động thế nào",lede:"Theo một lần báo sửa từ đầu đến cuối: cư dân, nhân viên, và phần lõi nối hai bên.",residents:"Cư dân · trong Zalo",core:"Lõi Phố Mình",staffl:"Nhân viên · ứng dụng riêng",foot:"Minh họa. Tên người, số liệu và màn hình là ví dụ, chưa phải sản phẩm đã xây dựng.",back:"Lùi",next:"Tiếp",play:"Phát",pause:"Tạm dừng",replay:"Xem lại",step:"Bước",of:"/",running:"Đang chạy",done:"Xong",counters:"Đã báo 34 · Đã sửa {f} · TB 19 giờ",report:"Tuần 40: 34 phiếu · 32 xong · 94% đúng hạn · điểm nóng: cấp nước khu cao tầng"},
+ en:{eyebrow:"Omni Service · product concept",title:"How Phố Mình works",lede:"Follow one repair request from start to finish: the resident, the staff member, and the core that connects them.",residents:"Residents · inside Zalo",core:"Phố Mình core",staffl:"Staff · their own app",foot:"Illustration. Names, figures and screens are examples, not a built product. Phone screens stay in Vietnamese, as in the real app.",back:"Back",next:"Next",play:"Play",pause:"Pause",replay:"Replay",step:"Step",of:"of",running:"Running",done:"Done",counters:"Reported 34 · Fixed {f} · Avg 19 h",report:"Week 40: 34 tickets · 32 fixed · 94% on time · hotspot: water supply, high-rise"}
+};
+var NODES=[
+ {id:"n1",vi:["Chị Sen · trợ lý AI","Trả lời câu hỏi và tạo phiếu ngay trong cuộc trò chuyện"],en:["Chị Sen · AI assistant","Answers questions and files tickets from the chat"]},
+ {id:"n2",vi:["AI phân loại & giao việc","Đọc ảnh, xếp loại, chọn tổ đang trực"],en:["AI triage & routing","Reads the photo, sets type and urgency, picks the team on duty"]},
+ {id:"n3",vi:["Phiếu & đồng hồ cam kết","Một phiếu, cả hai bên cùng thấy"],en:["Ticket & SLA clock","One ticket, both sides see it"]},
+ {id:"n4",vi:["Nhịp Phố · bảng công khai","Việc đã báo, đã sửa, mất bao lâu, phí đi đâu"],en:["Nhịp Phố · public board","What was reported, fixed, how fast, where fees go"]},
+ {id:"n5",vi:["Quản lý · báo cáo tự động","Báo cáo tuần lấy thẳng từ các phiếu"],en:["Managers · automatic report","The weekly report comes straight from tickets"]}
+];
+var S=[
+ {r:"home",s:"home",n:{},pk:[],
+  vi:["Một ứng dụng, hai phía","Cư dân và nhân viên dùng chung một Phố Mình, ở cả Eco Central Park Vinh lẫn Eco Retreat Long An, cho nhà thấp tầng và căn hộ cao tầng. Cư dân mở ngay trong Zalo, không cần tải gì. Nhân viên dùng ứng dụng riêng. Phần lõi ở giữa nối hai bên."],
+  en:["One app, two sides","Residents and staff share one Phố Mình, at both Eco Central Park in Vinh and Eco Retreat in Long An, in low-rise homes and high-rise apartments alike. Residents open it inside Zalo, with nothing to download. Staff use their own app. The core in the middle connects the two."]},
+ {r:"chat",s:"home",n:{n1:"active"},pk:[["res","n1","▣"],["n1","res","…"]],
+  vi:["Chị Lan hỏi trợ lý AI","Chị Lan sống ở căn hộ cao tầng Central Park Residences, Eco Central Park. Chị thấy nước rò ở hành lang tầng 12. Chị chụp ảnh và hỏi Chị Sen. Trợ lý AI tự giới thiệu là AI, trả lời, và tạo phiếu báo sửa ngay trong cuộc trò chuyện."],
+  en:["Lan asks the AI assistant","Lan lives in a Central Park Residences apartment at Eco Central Park. She sees water leaking in the 12th-floor corridor. She takes a photo and asks Chị Sen. The assistant says up front that it is an AI, answers, and files a repair ticket right in the chat."]},
+ {r:"chat",s:"new",n:{n1:"done",n2:"active",n3:"active"},pk:[["n1","n2","▣"],["n2","n3","≡"],["n3","staff","!","alert"]],
+  vi:["AI phân loại và giao việc","AI đọc ảnh và lời nhắn: cấp nước, mức khẩn. Phiếu được giao cho tổ kỹ thuật đang trực, kèm đồng hồ cam kết 4 giờ."],
+  en:["AI sorts and routes it","The AI reads the photo and message: water supply, urgent. The ticket goes to the technical team on duty, with a 4-hour SLA clock."]},
+ {r:"track",s:"working",n:{n1:"done",n2:"done",n3:"active"},pk:[["staff","n3","✓","ok"],["n3","res","◷"]],
+  vi:["Hai bên cùng thấy đồng hồ","Anh Tuấn nhận việc trên ứng dụng nhân viên, có AI nhắc quy trình và vật tư. Cùng lúc, chị Lan thấy ai đang xử lý và đã bao lâu."],
+  en:["Both sides see the clock","Tuấn accepts the job on the staff app, with AI reminding him of the procedure and parts. At the same moment, Lan sees who is on it and how long it has taken."]},
+ {r:"track2",s:"finish",n:{n1:"done",n2:"done",n3:"active"},pk:[["staff","n3","▣","ok"]],
+  vi:["Sửa xong, có ảnh làm bằng","Anh Tuấn làm theo danh sách kiểm tra, chụp ảnh sau khi sửa và bấm Hoàn thành: 2 giờ 10 phút, trong cam kết."],
+  en:["Fixed, with photo proof","Tuấn works through the checklist, takes an after photo and taps Done: 2 hours 10 minutes, inside the SLA."]},
+ {r:"done",s:"finish",n:{n1:"done",n2:"done",n3:"done"},pk:[["n3","res","▣","ok"]],
+  vi:["Chị Lan thấy kết quả","Chị Lan nhận ảnh trước và sau, biết tên người đã sửa, và chấm điểm một lần duy nhất. Không bị nhắc đánh giá nhiều lần."],
+  en:["Lan sees the result","Lan gets the before and after photos, the name of the person who fixed it, and one chance to rate it. No repeated nagging for reviews."]},
+ {r:"thanks",s:"thanks",n:{n1:"done",n2:"done",n3:"done"},pk:[["res","n3","♥","heart"],["n3","staff","♥","heart"]],
+  vi:["Lời cảm ơn đến đúng người","Chị Lan bấm Cảm ơn anh Tuấn. Lời cảm ơn hiện ngay trên ứng dụng của anh và được cộng vào điểm tháng."],
+  en:["Thanks reach the right person","Lan taps Thank Tuấn. The thanks appear on his app straight away and add to his monthly score."]},
+ {r:"board",s:"thanks",n:{n1:"done",n2:"done",n3:"done",n4:"active"},pk:[["n3","n4","≡"],["n4","res","≡"]],fixed:32,
+  vi:["Nhịp Phố cập nhật","Phiếu này được cộng vào bảng công khai của khu Central Park Residences: đã báo bao nhiêu, đã sửa bao nhiêu, mất bao lâu, và phí đi đâu. Cư dân nào cũng xem được."],
+  en:["The street board updates","The ticket is added to the Central Park Residences public board: how many reported, how many fixed, how long it took, and where the fees went. Every resident can see it."]},
+ {r:"award",s:"award",n:{n1:"done",n2:"done",n3:"done",n4:"done"},pk:[["n4","staff","★","star"],["n4","res","★","star"]],fixed:32,
+  vi:["Người Giữ Phố của tháng","Cuối tháng, người nhận nhiều lời cảm ơn nhất được vinh danh tại sự kiện cộng đồng và nhận thưởng từ quỹ cảm ơn. Nhân viên tuyến đầu lần đầu có gương mặt."],
+  en:["Keeper of the Street","At month end, the staff member with the most thanks is honoured at a community event and paid from the thank-you pool. Frontline staff get a face for the first time."]},
+ {r:"award",s:"award",n:{n1:"done",n2:"done",n3:"done",n4:"done",n5:"active"},pk:[["n3","n5","≡"],["n4","n5","≡"]],fixed:32,report:true,
+  vi:["Quản lý không phải gõ lại","Báo cáo tuần được lấy thẳng từ các phiếu: số việc, tỷ lệ đúng hạn, điểm nóng. Không ai phải chép lại từ tuần trước."],
+  en:["Managers stop retyping","The weekly report is built straight from the tickets: volume, on-time rate, hotspots. Nobody copies last week's report forward."]},
+ {r:"board",s:"award",n:{n1:"done",n2:"done",n3:"done",n4:"done",n5:"done"},pk:[],fixed:32,report:true,
+  vi:["Một vòng khép kín","Mỗi lần báo sửa khép thành một vòng: cư dân thấy việc được làm, nhân viên được ghi nhận, quản lý có số liệu thật. Đó là Phố Mình."],
+  en:["One closed loop","Every repair request closes into one loop: residents see the work done, staff get the credit, managers get real numbers. That is Phố Mình."]}
+];
+
+function bar(app,sub){return '<div class="bar"><span class="app">'+app+'</span><span class="sub">'+sub+'</span></div>'}
+function track(el,pct,doing){return bar("Phố Mình","Phiếu #1047")+'<div class="body"><div class="card"><div class="row"><div class="photo before sm"></div><div><b>Rò nước</b><p class="meta">Hành lang tầng 12</p></div></div></div><ul class="steps"><li class="done"><span class="dot"></span>Đã gửi<span class="t">08:05</span></li><li class="done"><span class="dot"></span>Đã giao tổ kỹ thuật<span class="t">08:05</span></li><li class="active"><span class="dot"></span>Đang xử lý</li><li><span class="dot"></span>Hoàn thành</li></ul><div class="card"><p class="meta">Cam kết xử lý: 4 giờ</p><div class="clock"><span class="big">'+el+'</span><span class="meta">đã qua</span></div><div class="meter"><i style="width:'+pct+'%"></i></div></div><div class="row"><div class="avatar">T</div><div><b style="color:var(--ink1)">Anh Tuấn</b><p class="meta">'+doing+'</p></div></div></div>'}
+var R={
+ home:function(){return bar("Phố Mình","Zalo Mini App")+'<div class="body"><div><p class="hello">Chào chị Lan</p><p class="meta">Eco Central Park · Central Park Residences · căn 1205</p></div><div class="tiles"><div class="tile hl"><i style="background:var(--blue)">!</i>Báo &amp; Sửa</div><div class="tile"><i style="background:var(--green)">≋</i>Nhịp Phố</div><div class="tile"><i style="background:var(--ink1)">₫</i>Hóa đơn</div><div class="tile"><i style="background:var(--pink)">♥</i>Cảm ơn</div><div class="tile"><i style="background:var(--blue-ink)">✦</i>Hỏi Chị Sen</div><div class="tile"><i style="background:var(--amber)">◆</i>Sự kiện</div></div><div class="card"><div class="row"><span class="dot amber"></span><b>Thông báo</b></div><p>Tạm ngưng cấp nước để bảo trì bể ngầm, 14:00–16:00 thứ Bảy.</p></div><div class="card"><div class="row"><span class="dot"></span><b>Hóa đơn tháng 10</b></div><p class="meta">Xem phí theo từng hạng mục</p></div></div>'},
+ chat:function(){return bar("Hỏi Chị Sen","Trợ lý AI của Phố Mình")+'<div class="body"><p class="sys">Bạn đang trò chuyện với trợ lý AI</p><div class="bubble me"><div class="photo before"></div>Hành lang tầng 12 bị rò nước, báo ai ạ?</div><p class="who">Chị Sen · AI</p><div class="bubble ai"><span>Em đã tạo phiếu báo sửa giúp chị: <b>Rò nước, hành lang tầng 12</b>. Tổ kỹ thuật sẽ nhận ngay.</span></div><span class="chip blue"><span class="dot blue"></span>Phiếu #1047 đã tạo</span><p class="meta">Cần gặp người thật? Chạm để nối tổng đài.</p></div>'},
+ track:function(){return track("0:12",5,"Đang đến hành lang tầng 12")},
+ track2:function(){return track("1:58",49,"Đang thay khớp nối ống")},
+ done:function(){return bar("Phố Mình","Phiếu #1047")+'<div class="body"><span class="chip green"><span class="dot green"></span>Hoàn thành · 2 giờ 10 phút · đúng hạn</span><div class="pair"><div class="photo before"><span>Trước</span></div><div class="photo after"><span>Sau</span></div></div><div class="row"><div class="avatar">T</div><div><b style="color:var(--ink1)">Sửa bởi anh Tuấn</b><p class="meta">Tổ kỹ thuật · Eco Central Park</p></div></div><div class="card"><p class="meta">Chị thấy thế nào?</p><span class="stars" aria-label="5 sao">★★★★★</span></div><div class="btn pink">♥ Cảm ơn anh Tuấn</div></div>'},
+ thanks:function(){return bar("Phố Mình","Phiếu #1047")+'<div class="body"><span class="chip green"><span class="dot green"></span>Hoàn thành · 2 giờ 10 phút · đúng hạn</span><div class="pair"><div class="photo before"><span>Trước</span></div><div class="photo after"><span>Sau</span></div></div><span class="stars" aria-label="5 sao">★★★★★</span><span class="chip pink"><span class="dot pink"></span>Đã gửi lời cảm ơn đến anh Tuấn</span><div class="card"><p>“Cảm ơn anh, sửa nhanh quá!”</p><p class="meta">Lời nhắn của chị</p></div></div>'},
+ board:function(){return bar("Nhịp Phố","Central Park Residences · tuần này")+'<div class="body"><div class="stats"><div class="stat"><b>34</b><span>Đã báo</span></div><div class="stat"><b>32</b><span>Đã sửa</span></div><div class="stat"><b>19 giờ</b><span>TB xử lý</span></div></div><div class="card list"><div><span>Rò nước hành lang T12</span><span class="tag" style="color:var(--green-ink)"><span class="dot green"></span>Xong 2g10</span></div><div><span>Đèn sảnh tòa B</span><span class="tag" style="color:var(--blue-ink)"><span class="dot blue"></span>Đang xử lý</span></div><div><span>Cỏ khu vui chơi</span><span class="tag" style="color:var(--amber-ink)"><span class="dot amber"></span>Chờ vật tư</span></div></div><div class="card"><b>Phí của bạn đi đâu</b><div class="bars"><div><span>Vệ sinh</span><i style="width:100%"></i><em>32%</em></div><div><span>An ninh</span><i style="width:87%"></i><em>28%</em></div><div><span>Kỹ thuật</span><i style="width:69%"></i><em>22%</em></div><div><span>Cảnh quan</span><i style="width:56%"></i><em>18%</em></div></div></div><p class="meta">Số liệu minh họa</p></div>'},
+ award:function(){return bar("Bảng tin","Eco Central Park")+'<div class="body"><div class="card award"><div class="medal">★</div><b style="font-size:1.1em">Người Giữ Phố tháng 10</b><p><b>Anh Tuấn</b> · Tổ kỹ thuật</p><p class="meta">47 lời cảm ơn từ cư dân</p><p class="meta">Vinh danh tại Đêm hội Eco Central Park, 19:30 thứ Bảy</p></div><div class="card"><div class="row"><span class="dot amber"></span><b>Sự kiện</b></div><p>Chợ phiên cuối tuần ở quảng trường trung tâm, 7:00 Chủ nhật.</p></div></div>'}
+};
+var SF={
+ home:function(){return bar("Phố Mình · Nhân viên","Ca sáng")+'<div class="body"><div><p class="hello">Anh Tuấn</p><p class="meta">Tổ kỹ thuật · Eco Central Park</p></div><div class="card"><p class="meta">Việc của tôi</p><span class="big-n">0</span><p class="meta">Chưa có việc mới</p></div><div class="card"><p class="meta">Lời cảm ơn tháng này</p><span class="big-n">46</span></div><div class="card"><div class="row"><span class="dot blue"></span><b>Hỏi quy trình (AI)</b></div><p class="meta">Ví dụ: cách khóa van nhánh tầng</p></div></div>'},
+ new:function(){return bar("Phố Mình · Nhân viên","Ca sáng")+'<div class="body"><div class="card pulse"><div class="row" style="justify-content:space-between"><b>Việc mới · #1047</b><span class="chip red"><span class="dot red"></span>Khẩn</span></div><div class="photo before"></div><p><b>Rò nước</b> · hành lang tầng 12</p><p class="meta">Cư dân căn 1205 · AI xếp loại: cấp nước</p><p class="meta">Cam kết: 4 giờ</p></div><div class="btn">Nhận việc</div></div>'},
+ working:function(){return bar("Phố Mình · Nhân viên","Việc #1047")+'<div class="body"><span class="chip blue"><span class="dot blue"></span>Đang xử lý · 0:12</span><ul class="check"><li class="ok">Khóa van nhánh tầng 12</li><li>Thay khớp nối ống</li><li>Lau khô sàn hành lang</li><li>Chụp ảnh sau khi sửa</li></ul><div class="card"><div class="row"><span class="dot blue"></span><b>Gợi ý của AI</b></div><p class="meta">Khớp nối loại 27 mm, có ở kho tầng hầm B1. Nhớ báo cư dân trước khi khóa van.</p></div></div>'},
+ finish:function(){return bar("Phố Mình · Nhân viên","Việc #1047")+'<div class="body"><span class="chip green"><span class="dot green"></span>Hoàn thành · 2 giờ 10 phút · đúng hạn</span><ul class="check"><li class="ok">Khóa van nhánh tầng 12</li><li class="ok">Thay khớp nối ống</li><li class="ok">Lau khô sàn hành lang</li><li class="ok">Chụp ảnh sau khi sửa</li></ul><div class="photo after"><span>Ảnh sau</span></div></div>'},
+ thanks:function(){return bar("Phố Mình · Nhân viên","Ca sáng")+'<div class="body"><div class="toast"><b>♥ Chị Lan (căn 1205)</b><br>“Cảm ơn anh, sửa nhanh quá!”</div><div class="card"><p class="meta">Lời cảm ơn tháng này</p><div class="row"><span class="big-n">47</span><span class="plus">+1</span></div></div><div class="card"><p class="meta">Việc đúng hạn tháng này</p><span class="big-n">96%</span></div></div>'},
+ award:function(){return bar("Phố Mình · Nhân viên","Hồ sơ của tôi")+'<div class="body"><div class="card award"><div class="medal">★</div><b style="font-size:1.1em">Người Giữ Phố</b><p class="meta">Tháng 10 · Eco Central Park</p><p>47 lời cảm ơn · 96% đúng hạn</p></div><div class="card"><div class="row"><span class="dot green"></span><b>Thưởng từ quỹ cảm ơn</b></div><p class="meta">Được cộng vào kỳ lương tháng 11</p></div></div>'}
+};
+
+var lang="vi",i=0,playing=false,timers=[],stepStart=0,stepDur=6000,progTimer=null;
+var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(reduce)playing=false;
+try{var L=localStorage.getItem("phominh-lang");if(L==="en"||L==="vi")lang=L}catch(e){}
+var $=function(id){return document.getElementById(id)};
+var stage=$("stage"),pk=$("packets"),resScr=$("res-screen"),stfScr=$("staff-screen");
+var cur={r:null,s:null};
+
+function buildHub(){
+ $("hub").innerHTML=NODES.map(function(n){return '<div class="node" id="'+n.id+'"><div class="h"><span class="name"></span><span class="state" hidden><span class="dot"></span><span class="w"></span></span></div><span class="desc"></span>'+(n.id==="n4"?'<span class="extra"></span>':'')+(n.id==="n5"?'<span class="report" hidden></span>':'')+'</div>'}).join("");
+}
+function renderText(){
+ var t=T[lang];document.documentElement.lang=lang;
+ document.querySelectorAll("[data-k]").forEach(function(el){el.textContent=t[el.getAttribute("data-k")]});
+ document.querySelectorAll("[data-vi]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang)});
+ if(window.__introText)window.__introText();
+ $("lang-vi").setAttribute("aria-pressed",lang==="vi");$("lang-en").setAttribute("aria-pressed",lang==="en");
+ NODES.forEach(function(n){var el=$(n.id);el.querySelector(".name").textContent=n[lang][0];el.querySelector(".desc").textContent=n[lang][1]});
+ $("back").textContent=t.back;$("next").textContent=t.next;
+ $("printlist").innerHTML=NARR[lang].map(function(x){return "<li>"+x+"</li>"}).join("")+S.map(function(s){return "<li><b>"+s[lang][0]+".</b> "+s[lang][1]+"</li>"}).join("");
+ $("dots").querySelectorAll("button").forEach(function(b,k){b.setAttribute("aria-label",t.step+" "+(k+1))});
+ renderStepText();renderNodes();setPlayLabel();
+}
+function renderStepText(){
+ var t=T[lang],s=S[i];
+ $("stepno").textContent=t.step+" "+(i+1)+" "+t.of+" "+S.length;
+ $("cap-title").textContent=s[lang][0];$("cap-body").textContent=s[lang][1];
+ $("dots").querySelectorAll("button").forEach(function(b,k){if(k===i)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current")});
+}
+function renderNodes(){
+ var t=T[lang],s=S[i];
+ NODES.forEach(function(n){
+  var el=$(n.id),st=s.n[n.id]||"",tag=el.querySelector(".state");
+  el.classList.toggle("active",st==="active");el.classList.toggle("done",st==="done");
+  tag.hidden=!st;
+  tag.querySelector(".dot").className="dot "+(st==="active"?"blue":"green");
+  tag.querySelector(".w").textContent=st==="active"?t.running:t.done;
+ });
+ $("n4").querySelector(".extra").textContent=t.counters.replace("{f}",s.fixed||31);
+ var rep=$("n5").querySelector(".report");rep.hidden=!s.report;rep.textContent=t.report;
+}
+function setScreen(which,key){
+ if(cur[which]===key)return;cur[which]=key;
+ var host=which==="r"?resScr:stfScr,fn=which==="r"?R[key]:SF[key];
+ host.innerHTML='<div class="scr'+(reduce?'':' swap')+'">'+fn()+'</div>';
+}
+function center(id){
+ var el=id==="res"?$("res"):id==="staff"?$("staff"):$(id),r=el.getBoundingClientRect(),b=stage.getBoundingClientRect();
+ var y=(id==="res"||id==="staff")?r.top+r.height*0.42:r.top+r.height/2;
+ return [r.left+r.width/2-b.left,y-b.top];
+}
+function clearAnim(){timers.forEach(clearTimeout);timers=[];pk.innerHTML=""}
+function later(fn,ms){timers.push(setTimeout(fn,ms))}
+
+function go(n,auto){
+ clearAnim();
+ i=(n+S.length)%S.length;var s=S[i];
+ renderStepText();renderNodes();
+ var gap=800,dur=700,arrive={res:-1,staff:-1};
+ s.pk.forEach(function(p,k){if(p[1]==="res"||p[1]==="staff")arrive[p[1]]=k});
+ if(reduce||!s.pk.length){setScreen("r",s.r);setScreen("s",s.s)}
+ else{
+  if(arrive.res<0)setScreen("r",s.r);
+  if(arrive.staff<0)setScreen("s",s.s);
+  s.pk.forEach(function(p,k){
+   later(function(){
+    var a=center(p[0]),b=center(p[1]),d=document.createElement("div");
+    d.className="pk"+(p[3]?" "+p[3]:"");d.textContent=p[2];pk.appendChild(d);
+    var anim=d.animate([{transform:"translate("+a[0]+"px,"+a[1]+"px) scale(.6)",opacity:0},{transform:"translate("+a[0]+"px,"+a[1]+"px) scale(1)",opacity:1,offset:.12},{transform:"translate("+b[0]+"px,"+b[1]+"px) scale(1)",opacity:1,offset:.88},{transform:"translate("+b[0]+"px,"+b[1]+"px) scale(.6)",opacity:0}],{duration:dur,easing:"cubic-bezier(.4,0,.2,1)",fill:"forwards"});
+    anim.onfinish=function(){d.remove()};
+    if(k===arrive.res)later(function(){setScreen("r",s.r)},dur-80);
+    if(k===arrive.staff)later(function(){setScreen("s",s.s)},dur-80);
+   },k*gap);
+  });
+ }
+ stepDur=Math.max(6500,s.pk.length*gap+4800);
+ stepStart=Date.now();$("prog").style.width="0";
+ if(playing){
+  if(i===S.length-1){later(function(){playing=false;setPlayLabel();$("prog").style.width="100%"},stepDur)}
+  else later(function(){go(i+1,true)},stepDur);
+ }
+}
+function setPlayLabel(){var t=T[lang];$("play").textContent=playing?t.pause:(i===S.length-1&&!playing&&Date.now()-stepStart>=stepDur?t.replay:t.play)}
+function tick(){
+ if(playing){var p=Math.min(1,(Date.now()-stepStart)/stepDur);$("prog").style.width=(p*100)+"%"}
+ setPlayLabel();
+}
+function toggle(){
+ if(playing){playing=false;clearAnim();setScreen("r",S[i].r);setScreen("s",S[i].s);$("prog").style.width="0"}
+ else{playing=true;go(i===S.length-1&&$("play").textContent===T[lang].replay?0:i)}
+ setPlayLabel();
+}
+function manual(n){playing=false;go(n);setPlayLabel()}
+
+$("dots").innerHTML=S.map(function(_,k){return '<button type="button" data-i="'+k+'"></button>'}).join("");
+$("dots").addEventListener("click",function(e){var b=e.target.closest("button");if(b)manual(+b.getAttribute("data-i"))});
+$("back").addEventListener("click",function(){manual(i-1)});
+$("next").addEventListener("click",function(){manual(i+1)});
+$("play").addEventListener("click",toggle);
+function setLang(l){lang=l;try{localStorage.setItem("phominh-lang",l)}catch(e){}renderText()}
+$("lang-vi").addEventListener("click",function(){setLang("vi")});
+$("lang-en").addEventListener("click",function(){setLang("en")});
+document.addEventListener("keydown",function(e){
+ if(e.target.closest&&e.target.closest("button"))return;
+ if(e.key==="ArrowRight")manual(i+1);else if(e.key==="ArrowLeft")manual(i-1);else if(e.key===" "){e.preventDefault();toggle()}
+});
+
+/* ---------- intro pitch: narration, music, hand-off ---------- */
+var IT={vi:{pause:"Tạm dừng",resume:"Tiếp tục",mOn:"Nhạc: bật",mOff:"Nhạc: tắt",skip:"Bỏ qua ↓",scene:"Cảnh"},en:{pause:"Pause",resume:"Resume",mOn:"Music: on",mOff:"Music: off",skip:"Skip ↓",scene:"Scene"}};
+var scenes=[].slice.call(document.querySelectorAll(".scene")),NS=scenes.length-1;
+var ik=0,iplay=false,istarted=false,musicOn=true,music=null,nextT=null,audio=new Audio();
+audio.preload="auto";
+var TOTAL={vi:DUR.vi.reduce(function(a,b){return a+b},0),en:DUR.en.reduce(function(a,b){return a+b},0)};
+$("idots").innerHTML=NARR.vi.map(function(_,k){return '<button type="button" data-k2="'+(k+1)+'"></button>'}).join("");
+
+function Music(){
+ var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;
+ var ctx=new AC(),master=ctx.createGain(),lp=ctx.createBiquadFilter(),conv=ctx.createConvolver(),wet=ctx.createGain(),dry=ctx.createGain(),bus=ctx.createGain();
+ master.gain.value=0;lp.type="lowpass";lp.frequency.value=1700;wet.gain.value=.5;dry.gain.value=.65;
+ var len=ctx.sampleRate*3.2,imp=ctx.createBuffer(2,len,ctx.sampleRate);
+ for(var c=0;c<2;c++){var d=imp.getChannelData(c);for(var n=0;n<len;n++)d[n]=(Math.random()*2-1)*Math.pow(1-n/len,2.6)}
+ conv.buffer=imp;bus.connect(lp);lp.connect(dry);lp.connect(conv);conv.connect(wet);dry.connect(master);wet.connect(master);master.connect(ctx.destination);
+ var f=function(m){return 440*Math.pow(2,(m-69)/12)};
+ var CH=[[50,54,57,61],[47,50,54,57],[43,47,50,54],[45,52,57,59]],ROOT=[38,35,31,33],L=4.8,idx=0,next=ctx.currentTime+.15,level=.8,ducked=false;
+ function tone(freq,t,dur,peak,type,att){var o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(peak,t+att);g.gain.setTargetAtTime(0,t+dur,dur>1?.9:.5);o.connect(g);g.connect(bus);o.start(t);o.stop(t+dur+4)}
+ function chord(k,t){var c=CH[k%4];
+  c.forEach(function(m){tone(f(m),t,L,.028,"sine",1.6);tone(f(m)*1.0023,t,L,.012,"triangle",1.8)});
+  tone(f(ROOT[k%4]),t,L,.05,"sine",1.2);
+  for(var p=0;p<3;p++){var m=c[(Math.random()*4)|0]+24,at=t+.4+p*1.4+Math.random()*.5;tone(f(m),at,.25,.03,"sine",.01)}
+ }
+ var timer=setInterval(function(){while(next<ctx.currentTime+2){chord(idx++,next);next+=L}},300);
+ function apply(){master.gain.setTargetAtTime(musicOn?(ducked?level*.55:level):0,ctx.currentTime,.6)}
+ apply();
+ return{ctx:ctx,duck:function(on){ducked=on;apply()},refresh:apply,
+  stop:function(){master.gain.setTargetAtTime(0,ctx.currentTime,1);setTimeout(function(){clearInterval(timer);ctx.close()},5000)}};
+}
+function introText(){
+ var t=IT[lang];
+ $("ipause").textContent=iplay?t.pause:t.resume;
+ $("imusic").textContent=musicOn?t.mOn:t.mOff;$("imusic").setAttribute("aria-pressed",musicOn);
+ $("iskip").textContent=t.skip;
+ $("isub").textContent=ik>0?NARR[lang][ik-1]:"";
+ $("idots").querySelectorAll("button").forEach(function(b,k){b.setAttribute("aria-label",t.scene+" "+(k+1));if(k+1===ik)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current")});
+}
+window.__introText=introText;
+function showScene(k){
+ ik=k;scenes.forEach(function(s,n){
+  if(n===k){s.classList.remove("on");void s.offsetWidth;s.classList.add("on")}else s.classList.remove("on");
+ });introText();
+}
+function playScene(k){
+ clearTimeout(nextT);showScene(k);
+ audio.src=AUD[lang][k-1];
+ if(music)music.duck(true);
+ var p=audio.play();
+ if(p&&p.catch)p.catch(function(){nextT=setTimeout(afterVoice,DUR[lang][k-1]*1000)});
+}
+function afterVoice(){
+ if(music)music.duck(false);
+ if(!iplay)return;
+ if(ik<NS)nextT=setTimeout(function(){playScene(ik+1)},1100);
+ else{iplay=false;introText();nextT=setTimeout(toWalk,9000)}
+}
+audio.addEventListener("ended",afterVoice);
+function startIntro(){
+ istarted=true;iplay=true;$("intro").classList.add("running");
+ if(!music)music=Music();
+ playScene(1);
+}
+function toggleIntro(){
+ if(iplay){iplay=false;audio.pause();clearTimeout(nextT);if(music)music.ctx.suspend()}
+ else{
+  iplay=true;if(music)music.ctx.resume();
+  if(ik>=NS&&audio.ended){toWalk();return}
+  if(audio.ended||!audio.src)afterVoice();else audio.play();
+ }
+ introText();
+}
+function toWalk(){
+ clearTimeout(nextT);iplay=false;audio.pause();
+ if(music){music.stop();music=null}
+ introText();
+ $("how").scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
+ playing=true;go(1);setPlayLabel();
+}
+$("intro-start").addEventListener("click",startIntro);
+$("intro-skip0").addEventListener("click",toWalk);
+$("intro-walk").addEventListener("click",toWalk);
+$("iskip").addEventListener("click",toWalk);
+$("ipause").addEventListener("click",toggleIntro);
+$("imusic").addEventListener("click",function(){musicOn=!musicOn;if(music)music.refresh();introText()});
+$("idots").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var k=+b.getAttribute("data-k2");if(!iplay){iplay=true;if(music)music.ctx.resume()}playScene(k)});
+var baseSetLang=setLang;setLang=function(l){baseSetLang(l);if(istarted&&iplay&&ik>0)playScene(ik)};
+function itick(){
+ if(!istarted)return;
+ var done=DUR[lang].slice(0,Math.max(0,ik-1)).reduce(function(a,b){return a+b},0)+(audio.currentTime||0);
+ $("iprog").style.width=Math.min(100,done/TOTAL[lang]*100)+"%";
+}
+
+buildHub();renderText();go(0);setInterval(function(){tick();itick()},100);
+})();
+</script>
