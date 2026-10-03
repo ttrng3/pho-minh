@@ -258,6 +258,72 @@ body{font-family:var(--font);-webkit-font-smoothing:antialiased}
 @media (prefers-reduced-motion:reduce){
   .scr.swap,.pulse{animation:none}
 }
+/* ---------- simulator, cost, pilot sites ---------- */
+.sec{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 18px;display:flex;flex-direction:column;gap:14px}
+.sec .h-how{font-size:clamp(22px,3.4vw,28px)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink2);font:600 14px var(--font);border-radius:999px;padding:8px 14px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.tab[aria-selected="true"]{background:var(--ink1);border-color:var(--ink1);color:#fff}
+.tab:focus-visible,.seg button:focus-visible,.preset:focus-visible,.sec input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.vs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:12px}
+.side{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.side h4{margin:0;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.side.now h4{color:var(--red-ink)}
+.side.us{border-color:var(--blue)}
+.side.us h4{color:var(--blue-ink)}
+.side .hd{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.flow{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.4;color:var(--ink1)}
+.flow li{display:flex;gap:8px;align-items:flex-start}
+.flow .dot{margin-top:.45em}
+.fact{margin:0;margin-top:auto;font-size:12.5px;color:var(--ink3);border-top:1px solid var(--line);padding-top:8px}
+.chat{display:flex;flex-direction:column;gap:8px;font-size:16px;min-height:9em}
+.chat .bubble{max-width:92%}
+.rv{opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease}
+.rv.in{opacity:1;transform:none}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:10px 12px;border:1px solid var(--line);border-radius:1em;background:var(--card)}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--ink3);animation:blink 1s ease-in-out infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.ctl{display:flex;flex-direction:column;gap:16px;min-width:0}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld .lbl{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:14px;color:var(--ink1);font-weight:600}
+.fld output{font-variant-numeric:tabular-nums;white-space:nowrap}
+.hint{font-size:12.5px;color:var(--ink3)}
+.sec input[type=range]{width:100%;margin:0;accent-color:var(--blue);height:28px}
+.presets{display:flex;gap:6px;flex-wrap:wrap}
+.preset{border:1px solid var(--line);background:var(--card);font:600 12.5px var(--font);color:var(--blue-ink);border-radius:999px;padding:6px 10px;cursor:pointer}
+.assume{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.assume label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--ink3)}
+.assume input{font:600 15px var(--font);color:var(--ink1);border:1px solid var(--line);border-radius:8px;padding:8px;width:100%;background:var(--card)}
+.tag-a{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--amber-ink);background:var(--amber-tint);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.outs{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+.out{border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.out b{font-size:clamp(22px,3vw,30px);color:var(--ink1);font-variant-numeric:tabular-nums;letter-spacing:-.01em;line-height:1.1}
+.out span{font-size:13px;color:var(--ink3);line-height:1.35}
+.out.key{border-color:var(--blue);background:var(--blue-tint)}
+.out.key b{color:var(--blue-ink)}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--screen);align-self:flex-start}
+.seg button{border:0;background:transparent;font:600 13.5px var(--font);color:var(--ink3);padding:7px 14px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+.seg button[aria-selected="true"]{background:var(--card);color:var(--ink1);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.pl{list-style:none;margin:6px 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.pl li{border-top:1px solid var(--line);padding-top:6px;display:flex;flex-direction:column;gap:5px}
+.pl .r{display:flex;justify-content:space-between;gap:8px}
+.pl b{color:var(--ink1);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pbar{height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--green);border-radius:6px;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.site.swap{animation:swap .45s ease}
+@media (max-width:760px){
+  .vs,.calc{grid-template-columns:1fr}
+}
+@media (max-width:420px){
+  .outs,.assume{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .rv,.pbar i{transition:none}
+  .typing i,.site.swap{animation:none}
+}
+
 @media print{
   html,body{background:#fff}
   .lang,.controls,.packets,.progress{display:none!important}
@@ -432,6 +498,82 @@ body{font-family:var(--font);-webkit-font-smoothing:antialiased}
   </section>
 
   <p class="foot" data-k="foot"></p>
+
+  <section class="sec" id="sim" aria-labelledby="sim-h">
+    <div>
+      <p class="eyebrow" data-vi="Ba câu hỏi thật · hai cách trả lời" data-en="Three real questions · two ways to answer"></p>
+      <h2 class="h-how" id="sim-h" data-vi="Hôm nay cư dân tự xoay xở. Với Phố Mình, luôn có người trả lời." data-en="Today residents fend for themselves. With Phố Mình, someone always answers."></h2>
+      <p class="lede" data-vi="Chọn một câu cư dân đã thật sự đăng, rồi so sánh hai con đường." data-en="Pick something residents actually posted, then compare the two paths."></p>
+    </div>
+    <div class="tabs" role="tablist" id="sim-tabs"></div>
+    <div class="vs">
+      <div class="side now">
+        <h4 data-vi="Hôm nay" data-en="Today"></h4>
+        <figure class="q"><blockquote id="sim-q"></blockquote><figcaption id="sim-src"></figcaption></figure>
+        <ul class="flow" id="sim-now"></ul>
+        <p class="fact" id="sim-fact"></p>
+      </div>
+      <div class="side us">
+        <div class="hd"><h4 data-vi="Với Phố Mình" data-en="With Phố Mình"></h4><button class="cbtn" id="sim-replay" type="button" data-vi="↻ Phát lại" data-en="↻ Replay"></button></div>
+        <div class="chat" id="sim-chat" aria-live="polite"></div>
+        <ul class="flow" id="sim-flow"></ul>
+      </div>
+    </div>
+    <p class="foot" data-vi="Minh họa: câu trả lời là kịch bản, chưa phải sản phẩm đã xây dựng. Các câu hỏi là trích dẫn thật." data-en="Illustration: the answers are scripted, not a built product. The questions are real quotes."></p>
+  </section>
+
+  <section class="sec" id="cost" aria-labelledby="cost-h">
+    <div>
+      <p class="eyebrow" data-vi="Chi phí thí điểm" data-en="Pilot cost"></p>
+      <h2 class="h-how" id="cost-h" data-vi="Càng nhiều hộ, chi phí mỗi hộ càng nhỏ." data-en="More households, a smaller cost per household."></h2>
+      <p class="lede" data-vi="Kéo thanh trượt để xem chi phí nền tảng thuê và giờ công nhân viên được giải phóng. Chỉ tính chi phí: doanh thu và giữ chân cư dân chưa có số liệu nên không đưa vào." data-en="Move the sliders to see the rented platform's cost and the staff hours it frees. Cost only: revenue and resident retention have no data yet, so they are left out."></p>
+    </div>
+    <div class="calc">
+      <div class="ctl">
+        <div class="fld">
+          <div class="lbl"><label for="c-hh" data-vi="Số hộ" data-en="Households"></label><output id="o-hh" for="c-hh"></output></div>
+          <input type="range" id="c-hh" min="50" max="10000" step="1" value="613">
+          <div class="presets"><button class="preset" type="button" data-hh="613">Eco Central Park · 613</button><button class="preset" type="button" data-hh="59">Eco Retreat · 59</button></div>
+        </div>
+        <div class="fld">
+          <div class="lbl"><label for="c-fee"><span data-vi="Phí quản lý mỗi hộ mỗi tháng" data-en="Management fee per household per month"></span><span class="tag-a" data-vi="giả định" data-en="assumption"></span></label><output id="o-fee" for="c-fee"></output></div>
+          <input type="range" id="c-fee" min="200000" max="5000000" step="50000" value="1000000">
+          <span class="hint" data-vi="Số ví dụ. Thay bằng mức phí thật của từng khu." data-en="An example. Replace it with each site's real fee."></span>
+        </div>
+        <div class="fld">
+          <div class="lbl"><label for="c-auto"><span data-vi="Tỷ lệ AI tự xử lý" data-en="Share handled by AI"></span><span class="tag-a" data-vi="giả định" data-en="assumption"></span></label><output id="o-auto" for="c-auto"></output></div>
+          <input type="range" id="c-auto" min="30" max="80" step="5" value="50">
+          <span class="hint" data-vi="Phần câu hỏi và phiếu AI tự trả lời hoặc tự tạo, nhân viên không phải gõ lại." data-en="Questions and tickets the AI answers or files itself, so staff don't retype them."></span>
+        </div>
+        <div class="assume">
+          <label><span data-vi="Yêu cầu mỗi hộ mỗi tháng (giả định)" data-en="Requests per household per month (assumption)"></span><input type="number" id="c-req" min="0" max="20" step="0.1" value="1"></label>
+          <label><span data-vi="Phút nhân viên mỗi yêu cầu (giả định)" data-en="Staff minutes per request (assumption)"></span><input type="number" id="c-min" min="0" max="120" step="1" value="10"></label>
+        </div>
+      </div>
+      <div class="outs" aria-live="polite">
+        <div class="out key"><b id="r-cost"></b><span data-vi="chi phí nền tảng mỗi hộ mỗi tháng, ở mức trần 45 triệu/tháng" data-en="platform cost per household per month, at the 45 million/month cap"></span></div>
+        <div class="out"><b id="r-pct"></b><span data-vi="so với phí quản lý mỗi hộ" data-en="of the management fee per household"></span></div>
+        <div class="out"><b id="r-ai"></b><span data-vi="yêu cầu AI tự xử lý mỗi tháng" data-en="requests handled by AI each month"></span></div>
+        <div class="out"><b id="r-hrs"></b><span data-vi="giờ công nhân viên được giải phóng mỗi tháng" data-en="staff hours freed each month"></span></div>
+      </div>
+    </div>
+    <p class="foot" data-vi="Trần vốn khoảng 0,41 tỷ đồng: khoảng 230 triệu cho pháp lý giai đoạn 0, sau đó tối đa 45 triệu/tháng cho thí điểm đến 03/03/2027 (kế hoạch thực hiện 02/10/2026, giả định đã tính). Không tính tiết kiệm tiền mặt, giữ chân cư dân hay EBITDA vì chưa có số liệu nguồn." data-en="Capital cap about 0.41 billion VND: about 230 million for Phase 0 legal work, then at most 45 million a month for the pilot to 3 Mar 2027 (execution plan, 2 Oct 2026, computed assumption). Cash savings, retention and EBITDA are not modelled: there is no source data yet."></p>
+  </section>
+
+  <section class="sec" id="pilot" aria-labelledby="pilot-h">
+    <div>
+      <p class="eyebrow" data-vi="Hai khu thí điểm" data-en="Two pilot sites"></p>
+      <h2 class="h-how" id="pilot-h" data-vi="Vinh đã có cư dân. Long An đang đón những hộ đầu tiên." data-en="Vinh already has residents. Long An is welcoming its first."></h2>
+    </div>
+    <div class="seg" role="tablist" id="pv">
+      <button type="button" role="tab" data-v="onb" aria-selected="true" data-vi="Nhận nhà" data-en="Onboarding"></button>
+      <button type="button" role="tab" data-v="eng" aria-selected="false" data-vi="Tương tác" data-en="Engagement"></button>
+      <button type="button" role="tab" data-v="tix" aria-selected="false" data-vi="Xử lý phiếu" data-en="Ticket speed"></button>
+    </div>
+    <div class="sites" id="pilot-sites"></div>
+    <p class="foot" id="pilot-src"></p>
+  </section>
+
   <ol class="print-list" id="printlist"></ol>
 </div>
 
@@ -522,6 +664,7 @@ function renderText(){
  document.querySelectorAll("[data-k]").forEach(function(el){el.textContent=t[el.getAttribute("data-k")]});
  document.querySelectorAll("[data-vi]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang)});
  if(window.__introText)window.__introText();
+ if(window.__extraText)window.__extraText();
  $("lang-vi").setAttribute("aria-pressed",lang==="vi");$("lang-en").setAttribute("aria-pressed",lang==="en");
  NODES.forEach(function(n){var el=$(n.id);el.querySelector(".name").textContent=n[lang][0];el.querySelector(".desc").textContent=n[lang][1]});
  $("back").textContent=t.back;$("next").textContent=t.next;
@@ -609,7 +752,7 @@ function setLang(l){lang=l;try{localStorage.setItem("phominh-lang",l)}catch(e){}
 $("lang-vi").addEventListener("click",function(){setLang("vi")});
 $("lang-en").addEventListener("click",function(){setLang("en")});
 document.addEventListener("keydown",function(e){
- if(e.target.closest&&e.target.closest("button"))return;
+ if(e.target.closest&&e.target.closest("button,input"))return;
  if(e.key==="ArrowRight")manual(i+1);else if(e.key==="ArrowLeft")manual(i-1);else if(e.key===" "){e.preventDefault();toggle()}
 });
 
@@ -704,6 +847,101 @@ function itick(){
  var done=DUR[lang].slice(0,Math.max(0,ik-1)).reduce(function(a,b){return a+b},0)+(audio.currentTime||0);
  $("iprog").style.width=Math.min(100,done/TOTAL[lang]*100)+"%";
 }
+
+/* ---------- simulator: today vs Phố Mình ---------- */
+var SIM=[
+ {q:"“Ko có OTP gửi về, ko đăng ký được tài khoản”",src:{vi:"Đánh giá App Store, ứng dụng Eco Central Park",en:"App Store review, Eco Central Park app"},tab:{vi:"Không có OTP",en:"No OTP"},
+  now:{vi:["Tải ứng dụng riêng về máy","Chờ mã OTP, mã không về","Không đăng ký được, bỏ cuộc","Quay lại nhóm Facebook để hỏi"],en:["Download a separate app","Wait for the OTP, it never arrives","Can't register, give up","Go back to Facebook to ask"]},
+  fact:{vi:"Ứng dụng cư dân hiện có tại Vinh: 0 lượt đánh giá, không cập nhật từ 01/2024 (App Store, 02/10/2026).",en:"The existing resident app for Vinh: 0 ratings, no update since Jan 2024 (App Store, 2 Oct 2026)."},
+  me:{vi:"Em mới nhận nhà, đăng ký thế nào ạ?",en:"I just moved in. How do I sign up?"},
+  ai:{vi:"Chị không cần tải gì hay chờ OTP. Phố Mình mở ngay trong Zalo, bằng tài khoản Zalo của chị. Em đã gửi yêu cầu xác nhận căn hộ tới Ban quản lý.",en:"No download and no OTP. Phố Mình opens inside Zalo, with your Zalo account. I've sent your unit confirmation to management."},
+  chip:{vi:"Đã gửi xác nhận căn hộ",en:"Unit confirmation sent"},
+  us:{vi:["Mở ngay trong Zalo, không cần tải","Nhận diện cư dân qua tài khoản Zalo","Ban quản lý duyệt căn hộ","Dùng được ngay, không cần OTP"],en:["Opens inside Zalo, nothing to download","Recognises the resident by their Zalo account","Management confirms the unit","Ready to use, no OTP"]}},
+ {q:"“Tòa S1 S2 bàn giao chậm đến khi nào vậy mọi người?”",src:{vi:"Nhóm Facebook cư dân ECP, 09/2026",en:"ECP residents' Facebook group, Sep 2026"},tab:{vi:"Bàn giao S1, S2",en:"S1/S2 handover"},
+  now:{vi:["Hỏi trong nhóm Facebook do môi giới lập","Người lạ trả lời bằng phỏng đoán","Ban quản lý không xác nhận","Câu hỏi lặp lại mỗi tuần"],en:["Ask in a broker-run Facebook group","Strangers answer with guesses","Management never confirms","The same question returns every week"]},
+  fact:{vi:"Nhóm “cư dân” lớn nhất của ECP có 54.100 thành viên và do môi giới quản lý (rà soát công khai 25/09/2026).",en:"ECP's largest “residents” group has 54,100 members and is run by brokers (public review, 25 Sep 2026)."},
+  me:{vi:"Tòa S1, S2 bàn giao đến khi nào ạ?",en:"When will S1 and S2 be handed over?"},
+  ai:{vi:"Em gửi chị mốc mới nhất của S1 và S2 theo lịch bàn giao Ban quản lý đã công bố. Khi lịch thay đổi, em sẽ báo chị ngay.",en:"Here are the latest S1 and S2 dates from management's published handover schedule. I'll tell you as soon as they change."},
+  chip:{vi:"Đã theo dõi bàn giao S1, S2",en:"Following S1, S2 handover"},
+  us:{vi:["AI trả lời từ lịch bàn giao chính thức","Câu trả lời kèm nguồn","Cư dân nhận thông báo khi lịch đổi","AI chưa chắc thì chuyển người thật"],en:["AI answers from the official schedule","Every answer shows its source","Residents are alerted when dates change","When unsure, the AI hands over to a person"]}},
+ {q:"“mấy năm sau sẽ xuống cấp… hoặc phí rất cao”",src:{vi:"Bình luận YouTube về Eco Retreat",en:"YouTube comment on Eco Retreat"},tab:{vi:"Xuống cấp, phí cao",en:"Wear and high fees"},
+  now:{vi:["Không có hồ sơ công khai về bảo trì","Không thấy phí đi đâu","Nghi ngờ lan trong bình luận","Niềm tin giảm trước cả khi nhận nhà"],en:["No public maintenance record","No view of where fees go","Doubt spreads in the comments","Trust drops before people even move in"]},
+  fact:{vi:"Bình luận công khai về Eco Retreat (rà soát 25/09/2026).",en:"Public comment on Eco Retreat (review, 25 Sep 2026)."},
+  me:{vi:"Vài năm nữa có xuống cấp không, phí dùng vào việc gì ạ?",en:"Will it wear out in a few years? What are the fees spent on?"},
+  ai:{vi:"Chị xem bảng Nhịp Phố: việc đã báo, đã sửa, có ảnh trước và sau, và phí chia theo vệ sinh, an ninh, kỹ thuật, cảnh quan.",en:"Have a look at the Nhịp Phố board: what was reported and fixed, with before-and-after photos, and the fee split across cleaning, security, technical and landscaping."},
+  chip:{vi:"Đã mở bảng Nhịp Phố",en:"Nhịp Phố board opened"},
+  us:{vi:["Bảng Nhịp Phố công khai cho mọi cư dân","Việc đã sửa, có ảnh làm bằng","Phí theo từng hạng mục","Lịch bảo trì sắp tới"],en:["A public Nhịp Phố board for every resident","Fixed jobs, with photo proof","Fees by category","Upcoming maintenance"]}}
+];
+var si=0,simT=[];
+function renderSim(){
+ var c=SIM[si];
+ $("sim-tabs").innerHTML=SIM.map(function(s,k){return '<button class="tab" type="button" role="tab" data-si="'+k+'" aria-selected="'+(k===si)+'">'+s.tab[lang]+'</button>'}).join("");
+ $("sim-q").textContent=c.q;$("sim-src").textContent=c.src[lang];
+ $("sim-now").innerHTML=c.now[lang].map(function(x){return '<li><span class="dot red"></span><span>'+x+'</span></li>'}).join("");
+ $("sim-fact").textContent=c.fact[lang];
+ $("sim-chat").innerHTML='<div class="bubble me rv">'+c.me[lang]+'</div><div class="typing rv" aria-hidden="true"><i></i><i></i><i></i></div><p class="who rv">Chị Sen · AI</p><div class="bubble ai rv">'+c.ai[lang]+'</div><span class="chip blue rv"><span class="dot blue"></span>'+c.chip[lang]+'</span>';
+ $("sim-flow").innerHTML=c.us[lang].map(function(x){return '<li class="rv"><span class="dot green"></span><span>'+x+'</span></li>'}).join("");
+ playSim();
+}
+function playSim(){
+ simT.forEach(clearTimeout);simT=[];
+ var ch=$("sim-chat").children,fl=[].slice.call($("sim-flow").children),typing=ch[1];
+ if(reduce){[].slice.call(ch).concat(fl).forEach(function(e){if(e!==typing)e.classList.add("in")});typing.style.display="none";return}
+ var show=function(e,ms){simT.push(setTimeout(function(){e.classList.add("in")},ms))};
+ show(ch[0],100);show(typing,600);
+ simT.push(setTimeout(function(){typing.style.display="none"},1500));
+ show(ch[2],1500);show(ch[3],1500);show(ch[4],2100);
+ fl.forEach(function(e,k){show(e,2500+k*400)});
+}
+$("sim-tabs").addEventListener("click",function(e){var b=e.target.closest("button");if(b){si=+b.getAttribute("data-si");renderSim()}});
+$("sim-replay").addEventListener("click",renderSim);
+
+/* ---------- pilot cost: cost only, every rate not from a source is labelled an assumption ---------- */
+var CAP=45e6;
+function num(n,d){return n.toLocaleString(lang==="vi"?"vi-VN":"en-US",{minimumFractionDigits:d||0,maximumFractionDigits:d||0})}
+function calc(){
+ var hh=+$("c-hh").value,fee=+$("c-fee").value,auto=+$("c-auto").value/100,req=Math.max(0,+$("c-req").value||0),min=Math.max(0,+$("c-min").value||0);
+ var cost=CAP/hh,ai=hh*req*auto;
+ $("o-hh").textContent=num(hh);$("o-fee").textContent=num(fee)+" đ";$("o-auto").textContent=Math.round(auto*100)+"%";
+ $("r-cost").textContent=num(Math.round(cost))+" đ";
+ $("r-pct").textContent=num(cost/fee*100,1)+"%";
+ $("r-ai").textContent=num(Math.round(ai));
+ $("r-hrs").textContent=num(Math.round(ai*min/60));
+}
+["c-hh","c-fee","c-auto","c-req","c-min"].forEach(function(id){$(id).addEventListener("input",calc)});
+document.querySelector(".presets").addEventListener("click",function(e){var b=e.target.closest("button");if(b){$("c-hh").value=b.getAttribute("data-hh");calc()}});
+
+/* ---------- pilot sites: only sourced figures; anything not yet measured says so ---------- */
+var pv="onb";
+var NOT={vi:"Chưa đo",en:"Not measured"};
+var TIX={big:"—",lbl:{vi:"chưa có phiếu: sản phẩm chưa chạy",en:"no tickets yet: the product isn't live"},
+ rows:[[{vi:"Thời gian xử lý trung bình",en:"Average time to fix"},NOT],[{vi:"Tỷ lệ đúng hạn",en:"On-time rate"},NOT],[{vi:"Phiếu có ảnh trước và sau",en:"Tickets with before-and-after photos"},NOT]],
+ chip:["blue",{vi:"Đo tự động từ phiếu đầu tiên",en:"Measured automatically from the first ticket"}]};
+var SITES=[
+ {name:"Eco Central Park · Vinh",
+  onb:{big:"613",lbl:{vi:"hộ đã về ở",en:"households living on site"},rows:[[{vi:"Thấp tầng đã bàn giao",en:"Low-rise homes handed over"},{vi:"1.192 / 1.657",en:"1,192 / 1,657"},1192/1657],[{vi:"Cao tầng Central Park Residences",en:"High-rise Central Park Residences"},{vi:"618 / 620",en:"618 / 620"},618/620]],chip:["blue",{vi:"Cần kênh chính thức ngay hôm nay",en:"Needs an official channel today"}]},
+  eng:{big:{vi:"54.100",en:"54,100"},lbl:{vi:"thành viên nhóm “cư dân” lớn nhất, do môi giới quản lý",en:"members of the largest “residents” group, run by brokers"},rows:[[{vi:"Ứng dụng cư dân hiện có: lượt đánh giá",en:"Existing resident app: ratings"},{vi:"0",en:"0"}],[{vi:"Lần cập nhật gần nhất",en:"Last update"},{vi:"01/2024",en:"Jan 2024"}],[{vi:"Hộ dùng Phố Mình",en:"Households on Phố Mình"},NOT]],chip:["amber",{vi:"Cư dân đang ở kênh không chính thức",en:"Residents are on unofficial channels"}]},
+  tix:TIX},
+ {name:"Eco Retreat · Long An",
+  onb:{big:"59",lbl:{vi:"căn đã bàn giao",en:"homes handed over"},rows:[[{vi:"Eco Bazaar đã bàn giao",en:"Eco Bazaar handed over"},{vi:"54 / 66",en:"54 / 66"},54/66],[{vi:"Phân khu 1 đã bàn giao",en:"Phase 1 handed over"},{vi:"5 / 198",en:"5 / 198"},5/198]],chip:["green",{vi:"Xây thói quen từ ngày đầu",en:"Habits form on day one"}]},
+  eng:{big:"—",lbl:{vi:"chưa có số liệu tương tác",en:"no engagement data yet"},rows:[[{vi:"Hộ dùng Phố Mình",en:"Households on Phố Mình"},NOT],[{vi:"Chỉ số sẽ đo",en:"Metric to track"},{vi:"Hộ kích hoạt / căn đã bàn giao",en:"Active households / homes handed over"}]],chip:["green",{vi:"Đo từ hộ đầu tiên",en:"Measured from the first household"}]},
+  tix:TIX}
+];
+var PSRC={onb:{vi:"Nguồn: báo cáo vận hành tuần ECP (25/09/2026) và ELA tuần 39/2026.",en:"Source: weekly operations reports, ECP (25 Sep 2026) and ELA week 39, 2026."},
+ eng:{vi:"Nguồn: rà soát công khai Facebook 25/09/2026 và App Store 02/10/2026.",en:"Source: public Facebook review, 25 Sep 2026, and the App Store, 2 Oct 2026."},
+ tix:{vi:"Phố Mình chưa chạy nên chưa có phiếu thật. Số phiếu trong phần minh họa phía trên là ví dụ.",en:"Phố Mình isn't live, so there are no real tickets. The ticket figures in the illustration above are examples."}};
+function tx(v){return typeof v==="string"?v:v[lang]}
+function renderPilot(){
+ [].forEach.call($("pv").children,function(b){b.setAttribute("aria-selected",b.getAttribute("data-v")===pv)});
+ $("pilot-sites").innerHTML=SITES.map(function(s){var d=s[pv];
+  return '<div class="site'+(reduce?'':' swap')+'"><p class="site-name">'+s.name+'</p><p class="site-num">'+tx(d.big)+'</p><p class="site-lbl">'+d.lbl[lang]+'</p><ul class="pl">'+
+   d.rows.map(function(r){return '<li><div class="r"><span>'+r[0][lang]+'</span><b>'+r[1][lang]+'</b></div>'+(r[2]!=null?'<div class="pbar"><i data-w="'+(r[2]*100).toFixed(1)+'"></i></div>':'')+'</li>'}).join("")+
+   '</ul><span class="chip '+d.chip[0]+'"><span class="dot '+d.chip[0]+'"></span><span>'+d.chip[1][lang]+'</span></span></div>'}).join("");
+ $("pilot-src").textContent=PSRC[pv][lang];
+ requestAnimationFrame(function(){requestAnimationFrame(function(){$("pilot-sites").querySelectorAll(".pbar i").forEach(function(i){i.style.width=i.getAttribute("data-w")+"%"})})});
+}
+$("pv").addEventListener("click",function(e){var b=e.target.closest("button");if(b){pv=b.getAttribute("data-v");renderPilot()}});
+window.__extraText=function(){renderSim();calc();renderPilot()};
 
 buildHub();renderText();go(0);setInterval(function(){tick();itick()},100);
 })();
